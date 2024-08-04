@@ -14,7 +14,7 @@ function ColorModeToggler() {
   }, [darkMode]);
 
   return (
-    <div className="p-5">
+    <>
       <button onClick={switchColorMode}>
         {" "}
         <div className="flex items-center gap-1">
@@ -31,7 +31,7 @@ function ColorModeToggler() {
           )}{" "}
         </div>
       </button>
-    </div>
+    </>
   );
 }
 export default ColorModeToggler;

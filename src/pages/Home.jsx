@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CountriesContext from "../context/countries/CountriesContext";
 import CountryItem from "../components/CountryItem";
 import { NEXT_PAGE, PREV_PAGE } from "../context/actions";
@@ -22,7 +23,7 @@ function Home() {
 
   return (
     <>
-      <div className="flex gap-4 my-5">
+      <div className="flex justify-center gap-5 m-8">
         <button
           disabled={currentPage > 230}
           className="btn btn-primary btn-sm"
@@ -36,12 +37,13 @@ function Home() {
           Prev
         </button>
       </div>
-      <div className="min-h-svh grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="min-h-svh grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
         {currentCountries.map((country, index) => (
-          <CountryItem
-            key={index}
-            country={country}
-          />
+          <Link
+            to={`/details/${country.name.common}`}
+            key={index}>
+            <CountryItem country={country} />
+          </Link>
         ))}
       </div>
     </>

@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div className="dark:bg-verydarkblue">
+    <div className="font-nunito bg-verylightgray dark:bg-verydarkblue min-h-screen">
       <Navbar />
-      <main className="container mx-auto px-4 my-5">
+      <main className="container mx-auto my-8">
         <Outlet />
       </main>
     </div>

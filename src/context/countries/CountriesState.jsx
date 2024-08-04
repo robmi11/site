@@ -7,6 +7,7 @@ import {
   FETCH_COUNTRIES,
   SET_CURRENT_COUNTRIES,
   SET_CURRENT_PAGE,
+  SET_COUNTRY_DETAILS,
   SET_LOADING,
 } from "../actions";
 
@@ -14,6 +15,7 @@ const CountriesState = ({ children }) => {
   const initialState = {
     countries: [],
     currentCountries: [],
+    details: [],
     currentPage: 0,
     countriesPerPage: 10,
     isError: false,
@@ -45,6 +47,19 @@ const CountriesState = ({ children }) => {
     dispatch({ type: SET_CURRENT_COUNTRIES });
   };
 
+  const getCountryByName = async (name) => {
+    try {
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/name/${name}?fullText=true`,
+      );
+      if (response.status === 200) {
+        dispatch({ type: SET_COUNTRY_DETAILS, payload: response.data });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //Set Loading State => TRUE
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -58,11 +73,13 @@ const CountriesState = ({ children }) => {
       value={{
         countries: state.countries,
         currentCountries: state.currentCountries,
+        details: state.details,
         currentPage: state.currentPage,
         isError: state.isError,
         isLoading: state.isLoading,
         message: state.message,
         setCurrentCountries,
+        getCountryByName,
       }}>
       {children}
     </CountriesContext.Provider>

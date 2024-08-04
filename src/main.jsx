@@ -10,6 +10,7 @@ import {
 import CountriesState from "./context/countries/CountriesState";
 import { ThemeProvider } from "./context/theme/ThemeContext";
 import App from "./App.jsx";
+import Details from "./pages/Details.jsx";
 import Home from "./pages/Home.jsx";
 import "./index.css";
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter(
         path="/"
         index="true"
         element={<Home />}
+      />
+      <Route
+        path="/details/:name"
+        element={<Details />}
       />
     </Route>,
   ),

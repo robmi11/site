@@ -5,6 +5,7 @@ import {
   NEXT_PAGE,
   PREV_PAGE,
   SET_LOADING,
+  SET_COUNTRY_DETAILS,
 } from "../actions.js";
 
 export default (state, action) => {
@@ -35,6 +36,8 @@ export default (state, action) => {
         };
       }
       break;
+    case SET_COUNTRY_DETAILS:
+      return { ...state, details: action.payload, isLoading: false };
     default:
       return state;
   }
