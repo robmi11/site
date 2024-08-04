@@ -1,16 +1,23 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import CountriesReducer from "./CountriesReducer";
 import CountriesContext from "./CountriesContext";
-import { FETCH_COUNTRIES, SET_LOADING } from "../actions";
+import {
+  FETCH_COUNTRIES,
+  SET_CURRENT_COUNTRIES,
+  SET_CURRENT_PAGE,
+  SET_LOADING,
+} from "../actions";
 
 const CountriesState = ({ children }) => {
   const initialState = {
     countries: [],
-    country: {},
+    currentCountries: [],
+    currentPage: 0,
+    countriesPerPage: 10,
     isError: false,
-    isLoading: true,
+    isLoading: false,
     message: null,
   };
 
@@ -24,24 +31,38 @@ const CountriesState = ({ children }) => {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       if (response.status === 200) {
         dispatch({ type: FETCH_COUNTRIES, payload: response.data });
+        dispatch({ type: SET_CURRENT_COUNTRIES });
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const setCurrentCountries = (direction) => {
+    setLoading();
+
+    dispatch({ type: SET_CURRENT_PAGE, payload: direction });
+    dispatch({ type: SET_CURRENT_COUNTRIES });
+  };
+
   //Set Loading State => TRUE
   const setLoading = () => dispatch({ type: SET_LOADING });
+
+  useEffect(() => {
+    fetchAllUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <CountriesContext.Provider
       value={{
         countries: state.countries,
-        country: state.country,
+        currentCountries: state.currentCountries,
+        currentPage: state.currentPage,
         isError: state.isError,
-        isLoading: state.isLoding,
+        isLoading: state.isLoading,
         message: state.message,
-        fetchAllUsers,
+        setCurrentCountries,
       }}>
       {children}
     </CountriesContext.Provider>

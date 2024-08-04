@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -27,11 +28,11 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <CountriesState>
-      <ThemeProvider>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </CountriesState>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <CountriesState>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </CountriesState>,
+  // </React.StrictMode>,
 );
