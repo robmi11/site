@@ -9,12 +9,14 @@ import {
   SET_CURRENT_PAGE,
   SET_COUNTRY_DETAILS,
   SET_LOADING,
+  SET_REGION_COUNTRIES,
 } from "../actions";
 
 const CountriesState = ({ children }) => {
   const initialState = {
     countries: [],
     currentCountries: [],
+    countriesByRegion: [],
     details: [],
     currentPage: 0,
     countriesPerPage: 10,
@@ -60,6 +62,21 @@ const CountriesState = ({ children }) => {
     }
   };
 
+  const getCountriesByRegion = async (region) => {
+    setLoading();
+    try {
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/region/${region}`,
+      );
+
+      if (response.status === 200) {
+        dispatch({ type: SET_REGION_COUNTRIES, payload: response.data });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //Set Loading State => TRUE
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -73,6 +90,7 @@ const CountriesState = ({ children }) => {
       value={{
         countries: state.countries,
         currentCountries: state.currentCountries,
+        countriesByRegion: state.countriesByRegion,
         details: state.details,
         currentPage: state.currentPage,
         isError: state.isError,
@@ -80,6 +98,7 @@ const CountriesState = ({ children }) => {
         message: state.message,
         setCurrentCountries,
         getCountryByName,
+        getCountriesByRegion,
       }}>
       {children}
     </CountriesContext.Provider>

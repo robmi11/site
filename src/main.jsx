@@ -12,6 +12,7 @@ import { ThemeProvider } from "./context/theme/ThemeContext";
 import App from "./App.jsx";
 import Details from "./pages/Details.jsx";
 import Home from "./pages/Home.jsx";
+import Region from "./pages/Region.jsx";
 import "./index.css";
 
 const router = createBrowserRouter(
@@ -27,6 +28,10 @@ const router = createBrowserRouter(
       <Route
         path="/details/:name"
         element={<Details />}
+      />
+      <Route
+        path="/region"
+        element={<Region />}
       />
     </Route>,
   ),

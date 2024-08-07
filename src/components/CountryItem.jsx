@@ -5,7 +5,7 @@ function CountryItem({ country }) {
 
   return (
     <div className="grid place-content-center">
-      <div className="card bg-verylightgray dark:bg-darkblue w-full h-[510px] lg:w-80 shadow-xl rounded-md">
+      <div className="card bg-verylightgray dark:bg-darkblue w-full h-[510px] lg:w-70 shadow-xl rounded-md">
         <figure>
           <img
             className="w-full"

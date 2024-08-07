@@ -6,6 +6,7 @@ import {
   PREV_PAGE,
   SET_LOADING,
   SET_COUNTRY_DETAILS,
+  SET_REGION_COUNTRIES,
 } from "../actions.js";
 
 export default (state, action) => {
@@ -36,6 +37,8 @@ export default (state, action) => {
         };
       }
       break;
+    case SET_REGION_COUNTRIES:
+      return { ...state, isLoading: false, countriesByRegion: action.payload };
     case SET_COUNTRY_DETAILS:
       return { ...state, details: action.payload, isLoading: false };
     default:
