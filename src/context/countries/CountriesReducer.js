@@ -6,7 +6,9 @@ import {
   PREV_PAGE,
   SET_LOADING,
   SET_COUNTRY_DETAILS,
+  CLEAR_COUNTRY_DETAIL,
   SET_REGION_COUNTRIES,
+  SET_COUNTRY_BY_CODE,
 } from "../actions.js";
 
 export default (state, action) => {
@@ -41,6 +43,10 @@ export default (state, action) => {
       return { ...state, isLoading: false, countriesByRegion: action.payload };
     case SET_COUNTRY_DETAILS:
       return { ...state, details: action.payload, isLoading: false };
+    case CLEAR_COUNTRY_DETAIL:
+      return { ...state, details: [] };
+    case SET_COUNTRY_BY_CODE:
+      return { ...state, countriesByCode: action.payload, isLoading: false };
     default:
       return state;
   }

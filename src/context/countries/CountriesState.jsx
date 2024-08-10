@@ -10,6 +10,8 @@ import {
   SET_COUNTRY_DETAILS,
   SET_LOADING,
   SET_REGION_COUNTRIES,
+  CLEAR_COUNTRY_DETAIL,
+  SET_COUNTRY_BY_CODE,
 } from "../actions";
 
 const CountriesState = ({ children }) => {
@@ -17,7 +19,8 @@ const CountriesState = ({ children }) => {
     countries: [],
     currentCountries: [],
     countriesByRegion: [],
-    details: [],
+    countriesByCode: [],
+    details: {},
     currentPage: 0,
     countriesPerPage: 10,
     isError: false,
@@ -77,8 +80,27 @@ const CountriesState = ({ children }) => {
     }
   };
 
+  const getCountryByCode = async (codes) => {
+    setLoading();
+    try {
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/alpha?codes=${codes.map(
+          (code) => `${code}`,
+        )}`,
+      );
+
+      if (response.status === 200) {
+        dispatch({ type: SET_COUNTRY_BY_CODE, payload: response.data });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //Set Loading State => TRUE
   const setLoading = () => dispatch({ type: SET_LOADING });
+
+  const clearCountryDetails = () => dispatch({ type: CLEAR_COUNTRY_DETAIL });
 
   useEffect(() => {
     fetchAllUsers();
@@ -91,6 +113,7 @@ const CountriesState = ({ children }) => {
         countries: state.countries,
         currentCountries: state.currentCountries,
         countriesByRegion: state.countriesByRegion,
+        countriesByCode: state.countriesByCode,
         details: state.details,
         currentPage: state.currentPage,
         isError: state.isError,
@@ -99,6 +122,8 @@ const CountriesState = ({ children }) => {
         setCurrentCountries,
         getCountryByName,
         getCountriesByRegion,
+        clearCountryDetails,
+        getCountryByCode,
       }}>
       {children}
     </CountriesContext.Provider>

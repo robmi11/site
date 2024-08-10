@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         element={<Home />}
       />
       <Route
-        path="/details/:name"
+        path="/details/:country"
         element={<Details />}
       />
       <Route
@@ -38,11 +38,11 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <CountriesState>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </CountriesState>,
-  // </React.StrictMode>,
+  <React.StrictMode>
+    <CountriesState>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </CountriesState>
+  </React.StrictMode>,
 );

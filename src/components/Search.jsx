@@ -14,9 +14,9 @@ function Search() {
 
   const handleSelectChange = (event) => {
     getCountriesByRegion(event.target.value);
-    event.target.value = "region";
 
-    navigate("/region");
+    navigate(`/region?region=${event.target.value}`);
+    event.target.value = "region";
   };
 
   return (
@@ -50,7 +50,6 @@ function Search() {
           </option>
           <option value="africa">Africa</option>
           <option value="america">America</option>
-          <option value="asia">Asia</option>
           <option value="asia">Asia</option>
           <option value="europe">Europe</option>
           <option value="oceania">Oceania</option>
