@@ -4,17 +4,26 @@ export default {
   darkMode: ["selector"],
   content: ["index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        darkblue: "hsl(209, 23%, 22%)",
-        verydarkblue: "hsl(207, 26%, 17%)",
-        darkbluetext: "hsl(200, 15%, 8%)",
-        darkgray: "hsl(0, 0%, 52%)",
-        verylightgray: "hsl(0, 0%, 98%)",
+    container: {
+      center: true,
+    },
+    colors: {
+      oxford: {
+        50: "#f2f8f9",
+        100: "#deebef",
+        200: "#c1d7e0",
+        300: "#95bacb",
+        400: "#6395ad",
+        500: "#477a93",
+        600: "#3e647c",
+        700: "#375367",
+        800: "#334757",
+        900: "#2b3945",
+        950: "#1b2731",
       },
-      fontFamily: {
-        nunito: ["'Nunito Sans'", "sans-serif"],
-      },
+    },
+    fontFamily: {
+      nunito: ["'Nunito Sans'", "sans-serif"],
     },
   },
   plugins: [daisyui],

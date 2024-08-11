@@ -4,15 +4,12 @@ import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider,
   Route,
+  RouterProvider,
 } from "react-router-dom";
-import CountriesState from "./context/countries/CountriesState";
-import { ThemeProvider } from "./context/theme/ThemeContext";
-import App from "./App.jsx";
-import Details from "./pages/Details.jsx";
-import Home from "./pages/Home.jsx";
-import Region from "./pages/Region.jsx";
+import { ColorModeProvider } from "./context/theme/ColorModeContext";
+import App from "./App";
+import HomePage from "./pages/HomePage";
 import "./index.css";
 
 const router = createBrowserRouter(
@@ -21,17 +18,9 @@ const router = createBrowserRouter(
       path="/"
       element={<App />}>
       <Route
+        index={true}
         path="/"
-        index="true"
-        element={<Home />}
-      />
-      <Route
-        path="/details/:country"
-        element={<Details />}
-      />
-      <Route
-        path="/region"
-        element={<Region />}
+        element={<HomePage />}
       />
     </Route>,
   ),
@@ -39,10 +28,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CountriesState>
-      <ThemeProvider>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </CountriesState>
+    <ColorModeProvider>
+      <RouterProvider router={router} />
+    </ColorModeProvider>
   </React.StrictMode>,
 );

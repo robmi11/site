@@ -1,17 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Search from "./components/Search";
 
-const App = () => {
+function App() {
   return (
-    <div className="relative font-nunito bg-verylightgray dark:bg-verydarkblue min-h-screen">
+    <div className="h-screen bg-oxford-200 text-oxford-950 dark:bg-oxford-950 dark:text-oxford-200">
       <Navbar />
-      <Search />
-
-      <main className="container mx-auto my-8">
+      <main className="container w-11/12 ">
         <Outlet />
       </main>
     </div>
   );
-};
+}
 export default App;
