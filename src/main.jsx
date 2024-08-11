@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ColorModeProvider } from "./context/theme/ColorModeContext";
+import { CountriesProvider } from "./context/countries/CountriesContext";
 import App from "./App";
 import HomePage from "./pages/HomePage";
 import "./index.css";
@@ -29,7 +30,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ColorModeProvider>
-      <RouterProvider router={router} />
+      <CountriesProvider>
+        <RouterProvider router={router} />
+      </CountriesProvider>
     </ColorModeProvider>
   </React.StrictMode>,
 );
