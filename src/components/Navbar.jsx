@@ -3,8 +3,8 @@ import Logo from "./Logo";
 
 function Navbar() {
   return (
-    <header className="shadow-md dark:shadow-xl bg-oxford-200 text-oxford-950 dark:bg-oxford-900 dark:text-oxford-200">
-      <div className="container w-11/12 min-h-24 flex justify-between items-center">
+    <header className="bg-oxford-200 text-oxford-950 shadow-md dark:bg-oxford-900 dark:text-oxford-200 dark:shadow-xl">
+      <div className="container flex min-h-24 w-11/12 items-center justify-between">
         <Logo title="Where in the World?" />
         <ColorModeToggler />
       </div>

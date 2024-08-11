@@ -28,11 +28,11 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ColorModeProvider>
-      <CountriesProvider>
-        <RouterProvider router={router} />
-      </CountriesProvider>
-    </ColorModeProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <ColorModeProvider>
+    <CountriesProvider>
+      <RouterProvider router={router} />
+    </CountriesProvider>
+  </ColorModeProvider>,
+  // </React.StrictMode>,
 );

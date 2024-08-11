@@ -6,6 +6,8 @@ import {
   FETCH_ALL_COUNTRIES,
   SET_ERROR,
   SET_LOADING,
+  SET_COUNTRIES_TO_DISPLAY,
+  SET_CURRENT_PAGE,
 } from "./CountriesActions.js";
 
 const CountriesContext = createContext();
@@ -13,6 +15,9 @@ const CountriesContext = createContext();
 export const CountriesProvider = ({ children }) => {
   const initialState = {
     allCountries: [],
+    countriesToDisplay: null,
+    currentPage: 0,
+    countriesPerPage: 10,
     isError: false,
     isLoading: false,
     message: null,
@@ -20,19 +25,38 @@ export const CountriesProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(CountriesReducer, initialState);
 
+  function setCurrentPage(page) {
+    dispatch({ type: SET_CURRENT_PAGE, payload: page });
+  }
+
+  function setCountriesToDisplay(page) {
+    dispatch({
+      type: SET_COUNTRIES_TO_DISPLAY,
+      payload: state.allCountries.slice(page, page + 10),
+    });
+  }
+
+  // Set Loading state to TRUE
   function setLoading() {
     dispatch({ type: SET_LOADING });
   }
 
+  // Fetch all countries and set state
   useEffect(() => {
     async function fetchAllCountries() {
       setLoading();
       try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,population,flags,capital,region",
+        );
         if (response.status === 200) {
           const data = await response.json();
           dispatch({ type: CLEAR_ERROR });
           dispatch({ type: FETCH_ALL_COUNTRIES, payload: data });
+          dispatch({
+            type: SET_COUNTRIES_TO_DISPLAY,
+            payload: data.slice(0, state.countriesPerPage),
+          });
         } else {
           dispatch({ type: SET_ERROR, payload: "Error Fetching Countries" });
         }
@@ -41,15 +65,20 @@ export const CountriesProvider = ({ children }) => {
       }
     }
     fetchAllCountries();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <CountriesContext.Provider
       value={{
         allCountries: state.allCountries,
+        countriesToDisplay: state.countriesToDisplay,
+        currentPage: state.currentPage,
         isLoading: state.isLoading,
         isError: state.isError,
         message: state.message,
+        setCountriesToDisplay,
+        setCurrentPage,
       }}>
       {children}
     </CountriesContext.Provider>

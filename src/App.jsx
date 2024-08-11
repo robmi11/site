@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="h-screen bg-oxford-200 text-oxford-950 dark:bg-oxford-950 dark:text-oxford-200">
+    <div className="h-min bg-oxford-200 text-oxford-950 dark:bg-oxford-950 dark:text-oxford-200">
       <Navbar />
-      <main className="container w-11/12 ">
+      <main className="container w-11/12 mt-10">
         <Outlet />
       </main>
     </div>
