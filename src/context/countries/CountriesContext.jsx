@@ -47,7 +47,7 @@ export const CountriesProvider = ({ children }) => {
       setLoading();
       try {
         const response = await fetch(
-          "https://restcountries.com/v3.1/all?fields=name,population,flags,capital,region",
+          "https://restcountries.com/v3.1/all?fields=name,population,flags,capital,region,subregion,tld,languages,borders,currencies",
         );
         if (response.status === 200) {
           const data = await response.json();

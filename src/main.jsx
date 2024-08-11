@@ -11,6 +11,7 @@ import { ColorModeProvider } from "./context/theme/ColorModeContext";
 import { CountriesProvider } from "./context/countries/CountriesContext";
 import App from "./App";
 import HomePage from "./pages/HomePage";
+import DetailsPage from "./pages/DetailsPage";
 import "./index.css";
 
 const router = createBrowserRouter(
@@ -22,6 +23,10 @@ const router = createBrowserRouter(
         index={true}
         path="/"
         element={<HomePage />}
+      />
+      <Route
+        path="/details/:name"
+        element={<DetailsPage />}
       />
     </Route>,
   ),
