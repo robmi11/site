@@ -20,12 +20,14 @@ function CountryCodeBtn({ code }) {
   }, [code]);
 
   return (
-    <Link
-      to={`/details/${name}`}
-      type="button"
-      className="btn btn-sm btn-theme mr-1">
-      {name && name.toUpperCase()}
-    </Link>
+    <div>
+      <Link
+        to={`/details/${name}`}
+        type="button"
+        className="btn btn-sm btn-theme w-full">
+        {name && name.toUpperCase()}
+      </Link>
+    </div>
   );
 }
 

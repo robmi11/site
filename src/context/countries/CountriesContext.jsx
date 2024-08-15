@@ -63,7 +63,7 @@ export const CountriesProvider = ({ children }) => {
    *
    * @param {string} - Region of the world countries to be filtered by.
    */
-  async function filterCountriesByRegion(region) {
+  async function fetchCountriesByRegion(region) {
     setLoading();
     try {
       const response = await fetch(
@@ -149,7 +149,7 @@ export const CountriesProvider = ({ children }) => {
         message: state.message,
         setCountriesToDisplay,
         setCurrentPage,
-        filterCountriesByRegion,
+        fetchCountriesByRegion,
         fetchCountriesByName,
         fetchAllCountries,
       }}>
