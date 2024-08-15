@@ -49,7 +49,7 @@ function HomePage() {
               Next
             </button>
           </div>
-          <section className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
+          <section className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center pb-10">
             {countriesToDisplay.map((country, index) => (
               <CountryCard
                 key={index}

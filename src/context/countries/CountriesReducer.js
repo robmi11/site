@@ -1,5 +1,7 @@
 import {
   FETCH_ALL_COUNTRIES,
+  FETCH_COUNTRIES_BY_REGION,
+  FETCH_COUNTRIES_BY_NAME,
   SET_ERROR,
   CLEAR_ERROR,
   SET_LOADING,
@@ -10,6 +12,10 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case FETCH_ALL_COUNTRIES:
+      return { ...state, allCountries: action.payload, isLoading: false };
+    case FETCH_COUNTRIES_BY_REGION:
+      return { ...state, allCountries: action.payload, isLoading: false };
+    case FETCH_COUNTRIES_BY_NAME:
       return { ...state, allCountries: action.payload, isLoading: false };
     case SET_COUNTRIES_TO_DISPLAY:
       return { ...state, isLoading: false, countriesToDisplay: action.payload };
