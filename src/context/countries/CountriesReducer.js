@@ -16,7 +16,7 @@ export default (state, action) => {
     case FETCH_COUNTRIES_BY_REGION:
       return { ...state, allCountries: action.payload, isLoading: false };
     case FETCH_COUNTRIES_BY_NAME:
-      return { ...state, allCountries: action.payload, isLoading: false };
+      return { ...state, searchedCountries: action.payload, isLoading: false };
     case SET_COUNTRIES_TO_DISPLAY:
       return { ...state, isLoading: false, countriesToDisplay: action.payload };
     case SET_CURRENT_PAGE:

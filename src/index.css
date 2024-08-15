@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-theme {
+  @apply bg-oxford-200 text-oxford-950 dark:bg-oxford-800 dark:text-oxford-200;
+}

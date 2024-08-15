@@ -18,6 +18,7 @@ const CountriesContext = createContext();
 export const CountriesProvider = ({ children }) => {
   const initialState = {
     allCountries: [],
+    searchedCountries: null,
     countriesToDisplay: null,
     currentPage: 0,
     countriesPerPage: 10,
@@ -47,10 +48,11 @@ export const CountriesProvider = ({ children }) => {
           type: SET_COUNTRIES_TO_DISPLAY,
           payload: data.slice(0, state.countriesPerPage),
         });
-
-        console.log(data);
       } else {
-        dispatch({ type: SET_ERROR, payload: "Error fetching countries" });
+        dispatch({
+          type: SET_ERROR,
+          payload: `404 - Country ${name} not found.`,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -139,6 +141,7 @@ export const CountriesProvider = ({ children }) => {
     <CountriesContext.Provider
       value={{
         allCountries: state.allCountries,
+        searchedCountries: state.searchedCountries,
         countriesToDisplay: state.countriesToDisplay,
         currentPage: state.currentPage,
         isLoading: state.isLoading,
