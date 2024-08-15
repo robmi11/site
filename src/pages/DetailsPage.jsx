@@ -80,9 +80,9 @@ function DetailsPage() {
             </p>
           </div>
 
-          <div className="mt-7 md:col-span-2 pb-7 grid grid-cols-1 gap-2 md:grid-cols-3">
+          <div className="mt-7 md:col-span-2 pb-7 grid grid-cols-1 gap-2 md:grid-cols-4">
             {details.borders.length !== 0 && (
-              <p className="row-span-4">Border Countries:</p>
+              <p className="row-span-8">Border Countries:</p>
             )}
             {details.borders.map((code, index) => (
               <CountryCodeBtn
